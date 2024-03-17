@@ -13,7 +13,10 @@ const saveCartLS = (cart) => {
 
 const addToLS = (id) => {
 	const cart = getStoredCart();
-	cart.push(id);
+	const checkCart = cart.find((idx) => idx === id);
+	if (!checkCart) {
+		cart.push(id);
+	}
 	// save to local storage
 	saveCartLS(cart);
 };

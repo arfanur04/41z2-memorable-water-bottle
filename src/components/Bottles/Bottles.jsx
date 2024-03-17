@@ -21,28 +21,33 @@ const Bottles = () => {
 
 	// load cart from local storage
 	useEffect(() => {
-		console.log("called the useEffect", bottles.length);
+		// console.log("called the useEffect", bottles.length);
 		if (bottles.length > 0) {
 			const storedCart = getStoredCart();
 			// console.log(`storedCart:`, storedCart);
 
 			const savedCart = [];
 			for (const id of storedCart) {
-				console.log(id);
+				// console.log(id);
 				const bottle = bottles.find((bottle) => bottle.id === id);
 				if (bottle) {
 					savedCart.push(bottle);
 				}
 			}
-			console.log(`savedCart:`, savedCart);
+			// console.log(`savedCart:`, savedCart);
 			set_cart(savedCart);
 		}
 	}, [bottles]);
 
 	const handleAddToCart = (bottle) => {
-		const newCart = [...cart, bottle];
-		set_cart(newCart);
-		addToLS(bottle.id);
+		const checkBottleCart = cart.find((botl) => botl.id === bottle.id);
+		if (!checkBottleCart) {
+			const newCart = [...cart, bottle];
+			set_cart(newCart);
+			addToLS(bottle.id);
+		} else {
+			alert("already added");
+		}
 	};
 
 	const handleRemoveFromCart = (id) => {
