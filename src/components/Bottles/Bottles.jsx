@@ -49,7 +49,7 @@ const Bottles = () => {
 		// visual cart remove
 		const remainingCart = cart.filter((bottle) => bottle.id !== id);
 		set_cart(remainingCart);
-		// remove from local storage
+		// remove from local storage.
 		removeFromLS(id);
 	};
 
